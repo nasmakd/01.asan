@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <style>
+        #wrap{}
+        header{
+            height: 45px;
+            background-color: #ddd;
+        }
+        #cont_wrap{
+            border: 2px solid tomato;
+            display: flex;
+            flex-direction: column;
+        }
+        #cont_up{
+            flex: 2;
+            display: flex;
+        }
+        .s1-1{
+            background-color: #4AB8BC;
+            flex: 1;
+        }
+        .cont_up_right{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .s1-2{
+            background-color: #589DD2;
+            flex: 1;
+        }
+        .s1-3{
+            background-color: #FF912F;
+            flex: 1;
+        }
+        #cont_down{
+            flex: 1;
+            display: flex;
+        }
+        .s2-1{
+            background-color: #589DD2;
+            flex: 1;
+        }
+        .s2-2{
+            background-color: #8DCA35;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <header>
+            <h1>헤더</h1>
+        </header>
+        <div id="cont_wrap">
+            <div id="cont_up">
+                <section class="s1-1">위-왼쪽</section>
+                <div class="cont_up_right">
+                    <section class="s1-2">위-오른쪽1</section>
+                    <section class="s1-3">위-오른쪽2</section>
+                </div>
+            </div>
+            <div id="cont_down">
+                <section class="s2-1">아래-왼쪽</section>
+                <section class="s2-2">아래-오른쪽</section>
+            </div>
+        </div>
+        <footer style="height: 100px; background-color: #aaa; position: fixed; bottom: 0; left: 0; width: 100%;">
+            푸터
+        </footer>
+    </div>
+    <script>
+        // #cont_wrap의 세로 길이 구하기
+        var footerTop = $("footer").offset().top; //회면 제일 위에서 부터 푸터가지의 거리
+        var cont_wrapTop = $("#cont_wrap").offset().top;
+
+        // #cont_wrap의 높이
+        var cont_wrapHeight = footerTop - cont_wrapTop;
+        console.log(cont_wrapHeight);
+
+        $("#cont_wrap").css({height: cont_wrapHeight});//가로길이 지정
+        
+        $(window).resize(function(){
+            var footerTop = $("footer").offset().top;
+            var cont_wrapHeight = footerTop - cont_wrapTop;
+            $("#cont_wrap").css({height: cont_wrapHeight});
+        });
+
+       
+    </script>
+</body>
+</html>
